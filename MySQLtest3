@@ -21,3 +21,28 @@ ALTER TABLE classics2 RENAME pre1900;
 ALTER TABLE pre1900 RENAME classics2;
 ALTER TABLE classics2 RENAME classics;
 
+ALTER TABLE classics2 MODIFY year SMALLINT;
+ALTER TABLE classics2 ADD pages SMALLINT UNSIGNED;
+
+DESCRIBE classics2;
+
+ALTER TABLE classics2 CHANGE type category VARCHAR(16);
+
+DESCRIBE classics2;
+
+ALTER TABLE classics2 DROP pages;
+
+DESCRIBE classics2;
+
+CREATE TABLE disposable(trash INT);
+DESCRIBE disposable;
+DROP TABLE disposable;
+SHOW tables;
+
+ALTER TABLE classics2 ADD INDEX(author(20));
+ALTER TABLE classics2 ADD INDEX(title(20));
+ALTER TABLE classics2 ADD INDEX(category(4));
+ALTER TABLE classics2 ADD INDEX(year);
+
+DESCRIBE classics2;
+
