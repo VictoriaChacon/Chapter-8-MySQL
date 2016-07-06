@@ -67,3 +67,14 @@ SELECT DISTINCT author FROM classics2;
 DELETE FROM classics2 WHERE title='Little Dorrit';
 
 DESCRIBE classics2;
+
+SELECT author, title FROM classics2 LIMIT 3;
+SELECT author, title FROM classics2 LIMIT 1,2;
+SELECT author, title FROM classics2 LIMIT 3,1;
+
+SELECT author, title FROM classics2
+WHERE MATCH(author, title) AGAINST('and');
+SELECT author, title FROM classics2
+WHERE MATCH(author, title) AGAINST('curiosity shop');
+SELECT author, title FROM classics2
+WHERE MATCH(author, title) AGAINST('tom sawyer');
