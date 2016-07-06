@@ -78,3 +78,40 @@ SELECT author, title FROM classics2
 WHERE MATCH(author, title) AGAINST('curiosity shop');
 SELECT author, title FROM classics2
 WHERE MATCH(author, title) AGAINST('tom sawyer');
+
+SELECT author, title FROM classics2
+WHERE MATCH(author, title)
+	AGAINST('+Charles -species' IN BOOLEAN MODE);
+SELECT author, title FROM classics2
+WHERE MATCH(author, title)
+	AGAINST('"origin of"' IN BOOLEAN MODE);
+
+UPDATE classics2 SET author='Mark Twain (Samuel Langhorne Clemens)'
+WHERE author='Mark Twain';
+UPDATE classics2 SET category='Classic Fiction'
+WHERE category='Fiction';
+
+DESCRIBE classics2;
+
+SELECT author, title FROM classics2 ORDER BY author;
+SELECT author, title FROM classics2 ORDER BY title DESC;
+
+SELECT category,COUNT(author) FROM classics2 GROUP BY category;
+
+CREATE TABLE customers (
+	name VARCHAR(128),
+	isbn VARCHAR(13),
+	PRIMARY KEY (isbn)) ENGINE MyISAM;
+INSERT INTO customers(name,isbn)
+	VALUES('Joe Bloggs','9780099533474');
+INSERT INTO customers(name,isbn)
+	VALUES('Mary Smith','9780582506206');
+INSERT INTO customers(name,isbn)
+	VALUES('Jack Wilson','9780517123201');
+SELECT * FROM customers;
+
+SELECT name,author,title FROM customers,classics2
+WHERE customers.isbn=classics2.isbn;
+
+SELECT name,author,title FROM customers NATURAL JOIN classics2;
+
